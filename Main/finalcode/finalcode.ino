@@ -220,18 +220,90 @@ void switchCheck(){
       limitCheck();
   }
   if(uiSwitch1 == HIGH && uiSwitch3 == HIGH && uiSwitch4 == HIGH){
+      //Direction
+      pinMode(firstMotorLeft, HIGH);
+      delay(1000);
+      pinMode(firstMotorLeft, LOW);
+      delay(1000);
+      pinMode(firstMotorRight, HIGH);
+      limitCheck();
       
+      pinMode(secondMotorRight, HIGH);
+      delay(1000);
+      pinMode(secondMotorRight, LOW;
+      delay(1000);
+      pinMode(secondMotorLeft, HIGH);
+      delay(1000);
+      pinMode(secondMotorLeft, LOW);
+      delay(1000);
+      pinMode(secondMotorRight, HIGH);
+      limitCheck();
   }
   if(uiSwitch1 == HIGH && uiSwitch2 == HIGH && uiSwitch4 == HIGH){
+      //Direction
+      pinMode(firstMotorLeft, HIGH);
+      delay(1000);
+      pinMode(firstMotorLeft, LOW);
+      delay(1000);
+      pinMode(firstMotorRight, HIGH);
+      delay(1000);
+      pinMode(firstMotorRight, LOW);
+      delay(1000);
+      pinMode(firstMotorLeft, HIGH);
+      limitCheck();
       
+      pinMode(secondMotorLeft, HIGH);
+      delay(1000);
+      pinMode(secondMotorLeft, LOW);
+      delay(1000);
+      pinMode(secondMotorRight, HIGH);
+      limitCheck();
   }
   if(uiSwitch2 == HIGH && uiSwitch3 == HIGH && uiSwitch4 == HIGH){
+      //Direction
+      pinMode(firstMotorRight, HIGH);
+      delay(1000);
+      pinMode(firstMotorRight, LOW);
+      delay(1000);
+      pinMode(firstMotorLeft, HIGH);
+      limitCheck();
       
+      pinMode(secondMotorRight, HIGH);
+      delay(1000);
+      pinMode(secondMotorRight, LOW);
+      delay(1000);
+      pinMode(secondMotorLeft, HIGH);
+      delay(1000);
+      pinMode(secondMotorLeft, LOW);
+      delay(1000);
+      pinMode(secondMotorRight, HIGH);
+      limitCheck();
   }
 
   //All Switches 
   if(uiSwitch1 == HIGH && uiSwitch2 == HIGH && uiSwitch3 == HIGH && uiSwitch4 == HIGH){
+      //Direction
+      pinMode(firstMotorLeft, HIGH);
+      delay(1000);
+      pinMode(firstMotorLeft, LOW);
+      delay(1000);
+      pinMode(firstMotorRight, HIGH);
+      delay(1000);
+      pinMode(firstMotorRight, LOW);
+      delay(1000);
+      pinMode(firstMotorLeft, HIGH);
+      limitCheck();
       
+      pinMode(secondMotorRight, HIGH);
+      delay(1000);
+      pinMode(secondMotorRight, LOW);
+      delay(1000);
+      pinMode(secondMotorLeft, HIGH);
+      delay(1000);
+      pinMode(secondMotorLeft, LOW);
+      delay(1000);
+      pinMode(secondMotorRight, HIGH);
+      limitCheck();
   }
 }
 
