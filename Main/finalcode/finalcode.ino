@@ -5,6 +5,9 @@
 int limitSwitch1 = 1;
 int limitSwitch2 = 2;
 
+int limitSwitchState1;
+int limitSwitchState2;
+
 int finButton = 3;
 
 int firstMotorRight = 10;
@@ -29,6 +32,9 @@ void setup(){
 
   pinMode(limitSwitch1, INPUT);
   pinMode(limitSwitch2, INPUT);
+ 
+  limitSwitchState1 = digitalRead(limitSwitch1);
+  limitSwitchState2 = digitalRead(limitSwitch2); 
   
   pinMode(led, OUTPUT);
 
@@ -50,6 +56,8 @@ void loop(){
   digitalWrite(led, HIGH);
   digitalWrite(secondMotorRight, LOW);
   }
+  
+  limitCheck();
   
   /*First Tower*/
   //This stops the motor when it hits the limit switch on the way back.
