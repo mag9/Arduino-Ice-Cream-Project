@@ -1,22 +1,24 @@
 /*
-  All code written by Jeremy Stark
+  All code written written by Jeremey Stark
 */
 
-const int limitSwitch1 = 1;
-const int limitSwitch2 = 2;
+int limitSwitch1 = 1;
+int limitSwitch2 = 2;
 
-const int finButton = 3;
+int finButton = 3;
 
-const int firstMotorRight = 10;
-const int firstMotorLeft = 11;
-const int secondMotorRight = 12;
-const int secondMotorLeft = 13;
+int firstMotorRight = 10;
+int firstMotorLeft = 11;
+int secondMotorRight = 12;
+int secondMotorLeft = 13;
 
 /*directionSide*/
-const int uiSwitch1 = 4; //leftLeft
-const int uiSwitch2 = 5; //rightLeft
-const int uiSwitch3 = 6; //rightRight
-const int uiSwitch4 = 7; //leftRight
+int uiSwitch1 = 4; //leftLeft
+int uiSwitch2 = 5; //rightLeft
+int uiSwitch3 = 6; //rightRight
+int uiSwitch4 = 7; //leftRight
+
+int led = 8;
 
 
 void setup(){
@@ -27,6 +29,8 @@ void setup(){
 
   pinMode(limitSwitch1, INPUT);
   pinMode(limitSwitch2, INPUT);
+  
+  pinMode(led, OUTPUT);
 
   pinMode(uiSwitch1, INPUT);
   pinMode(uiSwitch2, INPUT);
@@ -38,13 +42,20 @@ void setup(){
 void loop(){
 
   /*Button Controller*/
-
+  //button();
+  //switchCheck();
+  
+  digitalWrite(secondMotorRight, HIGH);
+  if(limitSwitch1 == HIGH){
+  digitalWrite(led, HIGH);
+  digitalWrite(secondMotorRight, LOW);
+  }
+  
   /*First Tower*/
   //This stops the motor when it hits the limit switch on the way back.
   if(limitSwitch1 == HIGH && firstMotorRight == HIGH){
     limitCheck();
-  }
-  if(limitSwitch1 == HIGH && firstMotorLeft == HIGH){
+  } else if(limitSwitch1 == HIGH && firstMotorLeft == HIGH){
     limitCheck();
   }
 
@@ -52,8 +63,7 @@ void loop(){
   //This stops the motor when it hits the limit switch on the way back.
   if(limitSwitch2 == HIGH && secondMotorRight == HIGH){
     limitCheck();
-  }
-  if(limitSwitch2 == HIGH && secondMotorLeft == HIGH){
+  } else if(limitSwitch2 == HIGH && secondMotorLeft == HIGH){
     limitCheck();
   }
 
@@ -61,6 +71,7 @@ void loop(){
 
 void button(){
   if(finButton == HIGH){
+    digitalWrite(led, HIGH);
     switchCheck();
   }
 }
@@ -69,41 +80,42 @@ void switchCheck(){
   //Single Switches
   if(uiSwitch1 == HIGH){
     //Direction  
-    pinMode(firstMotorLeft, HIGH);
+    digitalWrite(firstMotorLeft, HIGH);
     delay(1000);
-    pinMode(FirstMotorLeft, LOW);
+    digitalWrite(firstMotorLeft, LOW);
     delay(1000);
-    pinMode(firstMotorRight, HIGH);
+    digitalWrite(firstMotorRight, HIGH);
     //Limit Check
+    digitalWrite(led, HIGH);
     limitCheck();
   }
   if(uiSwitch2 == HIGH){
     //Direction  
-    pinMode(firstMotorRight, HIGH);
+    digitalWrite(firstMotorRight, HIGH);
     delay(1000);
-    pinMode(firstMotorRight, LOW);
+    digitalWrite(firstMotorRight, LOW);
     delay(1000);
-    pinMode(firstMotorLeft, HIGH);
+    digitalWrite(firstMotorLeft, HIGH);
     //Limit Check
     limitCheck();   
-  }
+  } 
   if(uiSwitch3 == HIGH){
     //Direction  
-    pinMode(secondMotorRight, HIGH);
+    digitalWrite(secondMotorRight, HIGH);
     delay(1000);
-    pinMode(secondMotorRight, LOW);
+    digitalWrite(secondMotorRight, LOW);
     delay(1000);
-    pinMode(secondMotorLeft, HIGH);
+    digitalWrite(secondMotorLeft, HIGH);
     //Limit Check
     limitCheck();
   }
   if(uiSwitch4 == HIGH){
     //Direction  
-    pinMode(secondMotorLeft, HIGH);
+    digitalWrite(secondMotorLeft, HIGH);
     delay(1000);
-    pinMode(secondMotorLeft, LOW);
+    digitalWrite(secondMotorLeft, LOW);
     delay(1000);
-    pinMode(secondMotorRight, HIGH);
+    digitalWrite(secondMotorRight, HIGH);
     //Limit Check
     limitCheck(); 
   } 
@@ -111,215 +123,216 @@ void switchCheck(){
   //Double Switches
   if(uiSwitch1 == HIGH && uiSwitch2 == HIGH){
       //Direction
-      pinMode(firstMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
       delay(1000);
-      pinMode(firstMotorLeft, LOW);
+      digitalWrite(firstMotorLeft, LOW);
       delay(1000);
-      pinMode(firstMotorRight, HIGH);
+      digitalWrite(firstMotorRight, HIGH);
       delay(1000);
-      pinMode(firstMotorRight, LOW);
+      digitalWrite(firstMotorRight, LOW);
       delay(1000);
-      pinMode(firstMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
       //Limit Check
-      limitCheck()
+      limitCheck();
   }
   if(uiSwitch1 == HIGH && uiSwitch3 == HIGH){
       //Direction
-      pinMode(firstMotorLeft, HIGH);
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       delay(1000);
       delay(1000);
-      pinMode(firstMotorLeft, LOW);
-      pinMode(secondMotorRight, LOW);
+      digitalWrite(firstMotorLeft, LOW);
+      digitalWrite(secondMotorRight, LOW);
       delay(1000);
       delay(1000);
-      pinMode(firstMotorRight, HIGH);
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(firstMotorRight, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       //Limit Check
       limitCheck();
   }
   if(uiSwitch1 == HIGH && uiSwitch4 == HIGH){
       //Direction
-      pinMode(firstMotorLeft, HIGH);
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       delay(1000);
       delay(1000);
-      pinMode(firstMotorLeft, LOW);
-      pinMode(secondMotorLeft, LOW);
+      digitalWrite(firstMotorLeft, LOW);
+      digitalWrite(secondMotorLeft, LOW);
       delay(1000);
       delay(1000);
-      pinMode(firstMotorRight, HIGH);
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(firstMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       //Limit Check
       limitCheck();
   }
   if(uiSwitch2 == HIGH && uiSwitch3 == HIGH){
       //Direction
-      pinMode(firstMotorRight, HIGH);
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(firstMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       delay(1000);
       delay(1000);
-      pinMode(firstMotorRight, LOW);
-      pinMode(secondMotorRight, LOW);
+      digitalWrite(firstMotorRight, LOW);
+      digitalWrite(secondMotorRight, LOW);
       delay(1000);
       delay(1000);
-      pinMode(firstMotorLeft, HIGH);
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       //Limit Check
       limitCheck();
   }
   if(uiSwitch2 == HIGH && uiSwitch4 == HIGH){
       //Direction
-      pinMode(firstMotorRight, HIGH);
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(firstMotorRight, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       delay(1000);
       delay(1000);
-      pinMode(firstMotorRight, LOW);
-      pinMode(secondMotorLeft, LOW);
+      digitalWrite(firstMotorRight, LOW);
+      digitalWrite(secondMotorLeft, LOW);
       delay(1000);
       delay(1000);
-      pinMode(firstMotorLeft, HIGH);
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       //Limit Check
       limitCheck();
   }
   if(uiSwitch3 == HIGH && uiSwitch4 == HIGH){
        //Direction
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       delay(1000);
-      pinMode(secondMotorLeft, LOW);
+      digitalWrite(secondMotorLeft, LOW);
       delay(1000);
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       delay(1000);
-      pinMode(secondMotorRight, LOW);
+      digitalWrite(secondMotorRight, LOW);
       delay(1000);
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       //Limit Check
-      limitCheck()
+      limitCheck();
   }
 
   //Triple Switches
   if(uiSwitch1 == HIGH && uiSwitch2 == HIGH && uiSwitch3 == HIGH){
       //Direction
-      pinMode(firstMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
       delay(1000);
-      pinMode(firstMotorLeft, LOW);
+      digitalWrite(firstMotorLeft, LOW);
       delay(1000);
-      pinMode(firstMotorRight, HIGH);
+      digitalWrite(firstMotorRight, HIGH);
       delay(1000);
-      pinMode(firstMotorRight, LOW);
+      digitalWrite(firstMotorRight, LOW);
       delay(1000);
-      pinMode(firstMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
       limitCheck();
       
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       delay(1000);
-      pinMode(secondMotorRight, LOW);
+      digitalWrite(secondMotorRight, LOW);
       delay(1000);
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       limitCheck();
   }
   if(uiSwitch1 == HIGH && uiSwitch3 == HIGH && uiSwitch4 == HIGH){
       //Direction
-      pinMode(firstMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
       delay(1000);
-      pinMode(firstMotorLeft, LOW);
+      digitalWrite(firstMotorLeft, LOW);
       delay(1000);
-      pinMode(firstMotorRight, HIGH);
+      digitalWrite(firstMotorRight, HIGH);
       limitCheck();
       
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       delay(1000);
-      pinMode(secondMotorRight, LOW;
+      digitalWrite(secondMotorRight, LOW);
       delay(1000);
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       delay(1000);
-      pinMode(secondMotorLeft, LOW);
+      digitalWrite(secondMotorLeft, LOW);
       delay(1000);
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       limitCheck();
   }
   if(uiSwitch1 == HIGH && uiSwitch2 == HIGH && uiSwitch4 == HIGH){
       //Direction
-      pinMode(firstMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
       delay(1000);
-      pinMode(firstMotorLeft, LOW);
+      digitalWrite(firstMotorLeft, LOW);
       delay(1000);
-      pinMode(firstMotorRight, HIGH);
+      digitalWrite(firstMotorRight, HIGH);
       delay(1000);
-      pinMode(firstMotorRight, LOW);
+      digitalWrite(firstMotorRight, LOW);
       delay(1000);
-      pinMode(firstMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
       limitCheck();
       
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       delay(1000);
-      pinMode(secondMotorLeft, LOW);
+      digitalWrite(secondMotorLeft, LOW);
       delay(1000);
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       limitCheck();
   }
   if(uiSwitch2 == HIGH && uiSwitch3 == HIGH && uiSwitch4 == HIGH){
       //Direction
-      pinMode(firstMotorRight, HIGH);
+      digitalWrite(firstMotorRight, HIGH);
       delay(1000);
-      pinMode(firstMotorRight, LOW);
+      digitalWrite(firstMotorRight, LOW);
       delay(1000);
-      pinMode(firstMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
       limitCheck();
       
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       delay(1000);
-      pinMode(secondMotorRight, LOW);
+      digitalWrite(secondMotorRight, LOW);
       delay(1000);
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       delay(1000);
-      pinMode(secondMotorLeft, LOW);
+      digitalWrite(secondMotorLeft, LOW);
       delay(1000);
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       limitCheck();
   }
 
   //All Switches 
   if(uiSwitch1 == HIGH && uiSwitch2 == HIGH && uiSwitch3 == HIGH && uiSwitch4 == HIGH){
       //Direction
-      pinMode(firstMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
       delay(1000);
-      pinMode(firstMotorLeft, LOW);
+      digitalWrite(firstMotorLeft, LOW);
       delay(1000);
-      pinMode(firstMotorRight, HIGH);
+      digitalWrite(firstMotorRight, HIGH);
       delay(1000);
-      pinMode(firstMotorRight, LOW);
+      digitalWrite(firstMotorRight, LOW);
       delay(1000);
-      pinMode(firstMotorLeft, HIGH);
+      digitalWrite(firstMotorLeft, HIGH);
       limitCheck();
       
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       delay(1000);
-      pinMode(secondMotorRight, LOW);
+      digitalWrite(secondMotorRight, LOW);
       delay(1000);
-      pinMode(secondMotorLeft, HIGH);
+      digitalWrite(secondMotorLeft, HIGH);
       delay(1000);
-      pinMode(secondMotorLeft, LOW);
+      digitalWrite(secondMotorLeft, LOW);
       delay(1000);
-      pinMode(secondMotorRight, HIGH);
+      digitalWrite(secondMotorRight, HIGH);
       limitCheck();
   }
 }
-
 /*Checks if either of the limit switches have been hit. If so it stops the motor.*/
 void limitCheck(){
 
   //Stops the first motor
   if(limitSwitch1 == HIGH){
-    pinMode(firstMotorRight, LOW);
-    pinMode(firstMotorLeft, LOW);
+    digitalWrite(firstMotorRight, LOW);
+    
+    digitalWrite(firstMotorLeft, LOW);
   }
 
   //stops the second motor
   if(limitSwitch2 == HIGH){
-    pinMode(secondMotorRight, LOW);
-    pinMode(secondMotorLeft, LOW);     
+    digitalWrite(secondMotorRight, LOW);
+    
+    digitalWrite(secondMotorLeft, LOW);     
   }
 }
 
